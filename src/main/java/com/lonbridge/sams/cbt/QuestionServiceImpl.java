@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,13 @@ public class QuestionServiceImpl implements QuestionService {
         log.info("Retrieving questions from {}", bankId);
         return repository.findByBankId(bankId);
     }
-
+    
+    @Override
+    public Set< Question > getQuestionInBanks ( String... bankId ) {
+        log.info("Retrieving questions from {}", Arrays.toString ( bankId ) );
+        return repository.findByBankIdIn ( bankId );
+    }
+    
     @Override
     public Question getQuestion(long id) {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);

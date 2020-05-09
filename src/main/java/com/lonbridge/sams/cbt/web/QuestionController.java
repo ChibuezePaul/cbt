@@ -26,6 +26,12 @@ public class QuestionController {
         Set<Question> questions = questionService.getQuestions(bankId);
         return ResponseEntity.ok(questions);
     }
+    
+    @GetMapping("/banks")
+    public ResponseEntity<Set<Question>> getQuestionsFromMultipleBank(String... bankId) {
+        Set<Question> questions = questionService.getQuestionInBanks(bankId);
+        return ResponseEntity.ok(questions);
+    }
 
     @GetMapping
     public ResponseEntity<Question> getQuestion(Long questionId) {

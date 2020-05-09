@@ -5,6 +5,8 @@ import java.util.Set;
 public interface ExamService {
 
     Set<ExamQuestion> getQuestions(String bankId);
+    
+    Set<ExamQuestion> getQuestionInBanks(String... bankId);
 
     ExamQuestion getQuestion(long id);
 

@@ -8,5 +8,5 @@ import java.util.Set;
 public class ExamQuestion {
     private String question;
 
-    private Set<String> answers;
+    private Set<ExamAnswerCmd> answers;
 }
