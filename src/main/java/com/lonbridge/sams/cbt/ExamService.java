@@ -12,4 +12,6 @@ public interface ExamService {
 
 
     void submitAnswer(ExamAnswerCmd cmd);
+    
+    Set< ExamQuestion> convertQuestionsToExamQuestions ( Set< Question> questions );
 }

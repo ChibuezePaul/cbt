@@ -3,6 +3,7 @@ package com.lonbridge.sams.cbt.web;
 import com.lonbridge.sams.cbt.ExamAnswerCmd;
 import com.lonbridge.sams.cbt.ExamQuestion;
 import com.lonbridge.sams.cbt.ExamService;
+import com.lonbridge.sams.cbt.Question;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,12 @@ public class ExamController {
 	public ResponseEntity submitAnswer(ExamAnswerCmd answerCmd){
 		examService.submitAnswer ( answerCmd );
 		return ResponseEntity.ok ().build ();
+	}
+	
+	@GetMapping("/convert")
+	public ResponseEntity< Set<ExamQuestion> > convertQuestionsToExamQuestions(Set< Question > questions) {
+		Set<ExamQuestion> examQuestions = examService.convertQuestionsToExamQuestions ( questions );
+		return ResponseEntity.ok(examQuestions);
 	}
 	
 }
