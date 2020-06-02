@@ -23,14 +23,14 @@ public class ExamServiceImpl implements ExamService {
 			  .collect ( Collectors.toSet () );
 	}
 	
-	protected static ExamQuestion convertQuestionToExamQuestion ( Question q ) {
+	protected static ExamQuestion convertQuestionToExamQuestion ( Question question ) {
 		ExamQuestion examQuestion = new ExamQuestion ();
-		examQuestion.setQuestion ( q.getQuestion () );
+		examQuestion.setQuestion ( question.getQuestion () );
 		Set< ExamAnswerCmd > answers = new HashSet<> ();
-		q.getOptions ().forEach ( o -> {
+		question.getOptions ().forEach ( option -> {
 			ExamAnswerCmd answerCmd = new ExamAnswerCmd ();
-			answerCmd.setQuestionId ( q.getId () );
-			answerCmd.setAnswer ( o.getAnswer () );
+			answerCmd.setQuestionId ( question.getId () );
+			answerCmd.setAnswer ( option.getAnswer () );
 			answers.add ( answerCmd );
 		} );
 		examQuestion.setAnswers ( answers );
