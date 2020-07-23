@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.examquestion;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Data
 public class ExamQuestion {
-    private String question;
+    private String description;
 
     private Set<ExamAnswerCmd> answers;
 }

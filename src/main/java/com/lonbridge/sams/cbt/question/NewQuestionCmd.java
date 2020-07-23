@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.question;
 
 import lombok.Data;
 

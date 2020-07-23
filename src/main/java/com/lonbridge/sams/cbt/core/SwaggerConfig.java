@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.core;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

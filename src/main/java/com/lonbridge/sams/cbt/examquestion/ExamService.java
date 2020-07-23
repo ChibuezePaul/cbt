@@ -1,4 +1,6 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.examquestion;
+
+import com.lonbridge.sams.cbt.question.Question;
 
 import java.util.Set;
 
@@ -13,5 +15,5 @@ public interface ExamService {
 
     void submitAnswer(ExamAnswerCmd cmd);
     
-    Set< ExamQuestion> convertQuestionsToExamQuestions ( Set< Question> questions );
+    Set< ExamQuestion> convertQuestionsToExamQuestions ( Set< Question > questions );
 }

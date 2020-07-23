@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.question;
 
 import lombok.Data;
 
@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Option {
     private String answer;
     private Boolean correct = false;
+    private Long point;
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.question;
 
 import lombok.Data;
 
@@ -15,7 +15,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String question;
+    private String description;
 
     @ElementCollection
     private Set<Option> options;

@@ -1,9 +1,9 @@
 package com.lonbridge.sams.cbt.web;
 
-import com.lonbridge.sams.cbt.ExamAnswerCmd;
-import com.lonbridge.sams.cbt.ExamQuestion;
-import com.lonbridge.sams.cbt.ExamService;
-import com.lonbridge.sams.cbt.Question;
+import com.lonbridge.sams.cbt.examquestion.ExamAnswerCmd;
+import com.lonbridge.sams.cbt.examquestion.ExamQuestion;
+import com.lonbridge.sams.cbt.examquestion.ExamService;
+import com.lonbridge.sams.cbt.question.Question;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @Api (value = "Exam Question", protocols = "https", description = "Manage cbt exam questions for SAMS")
-@RequestMapping ("v1/examquestions/")
+@RequestMapping ("v1/examquestion")
 @RestController
 public class ExamController {
 	

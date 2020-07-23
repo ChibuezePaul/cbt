@@ -1,5 +1,6 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.question;
 
+import java.util.List;
 import java.util.Set;
 
 public interface QuestionService {
@@ -15,5 +16,6 @@ public interface QuestionService {
     Question addQuestion(NewQuestionCmd cmd);
 
     Question updateQuestion(UpdateQuestionCmd cmd);
-
+    
+    List< Question > addQuestions ( List< NewQuestionCmd> cmds );
 }

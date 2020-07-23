@@ -1,5 +1,8 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.examquestion;
 
+import com.lonbridge.sams.cbt.question.Option;
+import com.lonbridge.sams.cbt.question.Question;
+import com.lonbridge.sams.cbt.question.QuestionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +28,7 @@ public class ExamServiceImpl implements ExamService {
 	
 	protected static ExamQuestion convertQuestionToExamQuestion ( Question question ) {
 		ExamQuestion examQuestion = new ExamQuestion ();
-		examQuestion.setQuestion ( question.getQuestion () );
+		examQuestion.setDescription ( question.getDescription () );
 		Set< ExamAnswerCmd > answers = new HashSet<> ();
 		question.getOptions ().forEach ( option -> {
 			ExamAnswerCmd answerCmd = new ExamAnswerCmd ();
@@ -53,7 +56,7 @@ public class ExamServiceImpl implements ExamService {
 	
 	@Override
 	public ExamQuestion getQuestion ( long id ) {
-		log.info("Retrieving exam question with id {}", id);
+		log.info("Retrieving exam description with id {}", id);
 		Question question = questionService.getQuestion ( id );
 		return convertQuestionToExamQuestion(question);
 	}
@@ -62,7 +65,7 @@ public class ExamServiceImpl implements ExamService {
 	public void submitAnswer ( ExamAnswerCmd cmd ) {
 		Question question = questionService.getQuestion ( cmd.getQuestionId () );
 		Boolean correct = false;
-		for(Option o : question.getOptions ()) {
+		for( Option o : question.getOptions ()) {
 			if(o.getAnswer ().trim ().equals ( cmd.getAnswer ().trim () )){
 				log.info ( "Answer chosen: {}", o );
 				correct = o.getCorrect ();

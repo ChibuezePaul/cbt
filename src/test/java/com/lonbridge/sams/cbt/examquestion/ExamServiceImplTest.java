@@ -1,5 +1,8 @@
-package com.lonbridge.sams.cbt;
+package com.lonbridge.sams.cbt.examquestion;
 
+import com.lonbridge.sams.cbt.question.Option;
+import com.lonbridge.sams.cbt.question.Question;
+import com.lonbridge.sams.cbt.question.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -29,7 +32,7 @@ class ExamServiceImplTest {
 	private Question getNewQuestion () {
 		Question question = new Question ();
 		question.setId ( 1L );
-		question.setQuestion ( "test question" );
+		question.setDescription ( "test description" );
 		question.setBankId ( "Math" );
 		Option option = new Option ();
 		option.setAnswer ( "test answer" );
@@ -41,13 +44,13 @@ class ExamServiceImplTest {
 	private Set<Question> getNewQuestions () {
 		Question question1 = new Question ();
 		question1.setId ( 1L );
-		question1.setQuestion ( "math test question" );
+		question1.setDescription ( "math test description" );
 		question1.setBankId ( "Math" );
 		question1.setOptions ( new HashSet<> (  ) );
 		
 		Question question2 = new Question ();
 		question2.setId ( 2L );
-		question2.setQuestion ( "english test question" );
+		question2.setDescription ( "english test description" );
 		question2.setBankId ( "Math" );
 		question2.setOptions ( new HashSet<> (  ) );
 		
