@@ -1,5 +1,6 @@
 package com.lonbridge.sams.cbt.web;
 
+import com.lonbridge.sams.cbt.assessment.Assessment;
 import com.lonbridge.sams.cbt.examquestion.ExamAnswerCmd;
 import com.lonbridge.sams.cbt.examquestion.ExamQuestion;
 import com.lonbridge.sams.cbt.examquestion.ExamService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 @Api (value = "Exam Question", protocols = "https", description = "Manage cbt exam questions for SAMS")
@@ -37,12 +40,6 @@ public class ExamController {
 	public ResponseEntity<ExamQuestion> getExamQuestion(Long questionId) {
 		ExamQuestion question = examService.getQuestion(questionId);
 		return ResponseEntity.ok (question);
-	}
-	
-	@PostMapping
-	public ResponseEntity submitAnswer(ExamAnswerCmd answerCmd){
-		examService.submitAnswer ( answerCmd );
-		return ResponseEntity.ok ().build ();
 	}
 	
 	@PutMapping ("/convert")

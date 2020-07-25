@@ -1,14 +1,15 @@
 package com.lonbridge.sams.cbt.examquestion;
 
+import com.lonbridge.sams.cbt.assessment.Assessment;
+import com.lonbridge.sams.cbt.assessment.AssessmentSummary;
 import com.lonbridge.sams.cbt.question.Option;
 import com.lonbridge.sams.cbt.question.Question;
 import com.lonbridge.sams.cbt.question.QuestionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,18 +62,6 @@ public class ExamServiceImpl implements ExamService {
 		return convertQuestionToExamQuestion(question);
 	}
 	
-	@Override
-	public void submitAnswer ( ExamAnswerCmd cmd ) {
-		Question question = questionService.getQuestion ( cmd.getQuestionId () );
-		Boolean correct = false;
-		for( Option o : question.getOptions ()) {
-			if(o.getAnswer ().trim ().equals ( cmd.getAnswer ().trim () )){
-				log.info ( "Answer chosen: {}", o );
-				correct = o.getCorrect ();
-			}
-		}
-		log.info ( "Answer gotten is correct {}", correct );
-	}
 	
 	@Override
 	public Set< ExamQuestion > convertQuestionsToExamQuestions ( Set< Question > questions ) {
