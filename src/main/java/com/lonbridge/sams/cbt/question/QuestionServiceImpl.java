@@ -1,6 +1,8 @@
 package com.lonbridge.sams.cbt.question;
 
 import com.lonbridge.sams.cbt.bank.Bank;
+import com.lonbridge.sams.cbt.bank.BankRepository;
+import com.lonbridge.sams.cbt.core.BankNotFoundException;
 import com.lonbridge.sams.cbt.core.QuestionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,33 +17,35 @@ import java.util.stream.Collectors;
 @Slf4j
 public class QuestionServiceImpl implements QuestionService {
 
-    private QuestionRepository repository;
+    private QuestionRepository questionRepository;
+    private BankRepository bankRepository;
 
-    public QuestionServiceImpl(QuestionRepository repository) {
-        this.repository = repository;
+    public QuestionServiceImpl(QuestionRepository questionRepository, BankRepository bankRepository) {
+        this.questionRepository = questionRepository;
+        this.bankRepository = bankRepository;
     }
 
     @Override
     public Set<Question> getQuestions(Long bankId) {
         log.info("Retrieving questions from {}", bankId);
-        return repository.findByBankId(bankId);
+        return questionRepository.findByBankId(bankId);
     }
     
     @Override
     public Set< Question > getQuestionInBanks ( String... bankId ) {
         log.info("Retrieving questions from {}", Arrays.toString ( bankId ) );
-        return repository.findByBankIdIn ( bankId );
+        return questionRepository.findByBankIdIn ( bankId );
     }
     
     @Override
     public Question getQuestion(long id) {
-        return repository.findById(id).orElseThrow( QuestionNotFoundException ::new);
+        return questionRepository.findById(id).orElseThrow( QuestionNotFoundException ::new);
     }
 
     @Override
     public void deleteQuestion(long id) {
         log.info("Deleting {}", id);
-        repository.deleteById(id);
+        questionRepository.deleteById(id);
     }
 
     @Override
@@ -50,18 +54,18 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = new Question();
         question.setDescription (cmd.getDescription());
         Set< Option > options = new HashSet<> ( cmd.getOptions () );
-     //   Bank bank = new Bank(cmd.getBank().getDescription());
+        Bank bank = bankRepository.findById(cmd.getBank().getId()).orElseThrow(BankNotFoundException::new);
         question.setOptions(options);
         question.setBank(cmd.getBank());
-        return repository.save(question);
+        return questionRepository.save(question);
     }
 
     @Override
     public Question updateQuestion(UpdateQuestionCmd cmd) {
-        Question question = repository.findById(cmd.getId()).orElseThrow(QuestionNotFoundException::new);
+        Question question = questionRepository.findById(cmd.getId()).orElseThrow(QuestionNotFoundException::new);
         question.setDescription (cmd.getDescription());
         question.setOptions(cmd.getOptions());
-        return repository.save(question);
+        return questionRepository.save(question);
     }
     
     @Override

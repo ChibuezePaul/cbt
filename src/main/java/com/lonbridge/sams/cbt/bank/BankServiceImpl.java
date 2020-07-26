@@ -41,11 +41,6 @@ public class BankServiceImpl implements BankService {
     public Set<Bank> getMultipleBanks (UpdateBankCmd... cmd ) {
         log.info("Retrieving multiple banks from {}", Arrays.toString ( cmd ) );
 
-        List<UpdateBankCmd> updateBankCmdList = Arrays.asList(cmd);
-        /*cmd.stream().filter(c -> c.getId() != 0)
-                .map()
-                .collect ( Collectors.toList () );*/
-
         List<Long> longIdList = new ArrayList<>();
 
         for (UpdateBankCmd ucbcmd :
@@ -60,6 +55,7 @@ public class BankServiceImpl implements BankService {
     @Override
     public Bank updateBank(UpdateBankCmd cmd) {
         Bank bank = bankRepository.findById(cmd.getId()).orElseThrow( BankNotFoundException::new);
+        bank.setDescription(cmd.getDescription());
         return bankRepository.save(bank);
     }
 
