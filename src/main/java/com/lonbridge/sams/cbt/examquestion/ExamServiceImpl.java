@@ -41,7 +41,7 @@ public class ExamServiceImpl implements ExamService {
 	}
 	
 	@Override
-	public Set< ExamQuestion > getQuestions ( String bankId ) {
+	public Set< ExamQuestion > getQuestions ( Long bankId ) {
 		log.info("Retrieving exam questions from bank {}", bankId);
 		Set< Question > questions = questionService.getQuestions ( bankId );
 		return collectExamQuestionsInASet ( questions );

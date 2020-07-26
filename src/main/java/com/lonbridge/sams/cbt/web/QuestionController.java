@@ -24,7 +24,7 @@ public class QuestionController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Set<Question>> getQuestions(String bankId) {
+    public ResponseEntity<Set<Question>> getQuestions(Long bankId) {
         Set<Question> questions = questionService.getQuestions(bankId);
         return ResponseEntity.ok(questions);
     }
@@ -48,7 +48,7 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<Question> addQuestion( NewQuestionCmd cmd) {
+    public ResponseEntity<?> addQuestion(@RequestBody NewQuestionCmd cmd) {
         Question question = questionService.addQuestion(cmd);
         return ResponseEntity.ok(question);
     }

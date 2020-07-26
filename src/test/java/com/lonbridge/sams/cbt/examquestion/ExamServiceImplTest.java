@@ -1,5 +1,6 @@
 package com.lonbridge.sams.cbt.examquestion;
 
+import com.lonbridge.sams.cbt.bank.Bank;
 import com.lonbridge.sams.cbt.question.Option;
 import com.lonbridge.sams.cbt.question.Question;
 import com.lonbridge.sams.cbt.question.QuestionService;
@@ -33,7 +34,8 @@ class ExamServiceImplTest {
 		Question question = new Question ();
 		question.setId ( 1L );
 		question.setDescription ( "test description" );
-		question.setBankId ( "Math" );
+		Bank bank = new Bank("test bank");
+		question.setBank ( bank );
 		Option option = new Option ();
 		option.setAnswer ( "test answer" );
 		option.setCorrect ( true );
@@ -45,13 +47,14 @@ class ExamServiceImplTest {
 		Question question1 = new Question ();
 		question1.setId ( 1L );
 		question1.setDescription ( "math test description" );
-		question1.setBankId ( "Math" );
+		Bank bank = new Bank("test bank");
+		question1.setBank ( bank );
 		question1.setOptions ( new HashSet<> (  ) );
 		
 		Question question2 = new Question ();
 		question2.setId ( 2L );
 		question2.setDescription ( "english test description" );
-		question2.setBankId ( "Math" );
+		question2.setBank ( bank );
 		question2.setOptions ( new HashSet<> (  ) );
 		
 		return new HashSet<> (asList ( question1, question2 ));
@@ -61,7 +64,7 @@ class ExamServiceImplTest {
 	void getQuestions () {
 		//Arrange
 		Set<Question> questions = getNewQuestions();
-		String bankId = "Math";
+		Long bankId = 1L;
 		
 		//Act
 		when ( questionService.getQuestions ( bankId ) ).thenReturn ( questions );

@@ -1,5 +1,6 @@
 package com.lonbridge.sams.cbt.question;
 
+import com.lonbridge.sams.cbt.bank.Bank;
 import com.lonbridge.sams.cbt.core.QuestionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Set<Question> getQuestions(String bankId) {
+    public Set<Question> getQuestions(Long bankId) {
         log.info("Retrieving questions from {}", bankId);
         return repository.findByBankId(bankId);
     }
@@ -49,8 +50,9 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = new Question();
         question.setDescription (cmd.getDescription());
         Set< Option > options = new HashSet<> ( cmd.getOptions () );
+     //   Bank bank = new Bank(cmd.getBank().getDescription());
         question.setOptions(options);
-        question.setBankId(cmd.getBankId());
+        question.setBank(cmd.getBank());
         return repository.save(question);
     }
 

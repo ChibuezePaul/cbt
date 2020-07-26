@@ -1,5 +1,6 @@
 package com.lonbridge.sams.cbt.question;
 
+import com.lonbridge.sams.cbt.bank.Bank;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Question {
 
-    private String bankId;
+  //  private String bankId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,9 @@ public class Question {
 
     @ElementCollection
     private Set<Option> options;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Bank bank;
 
     public Boolean isMultipleEntry(){
         return  options.stream().filter(Option::getCorrect).count() > 1;

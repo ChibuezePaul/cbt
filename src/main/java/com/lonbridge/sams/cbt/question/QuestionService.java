@@ -5,7 +5,7 @@ import java.util.Set;
 
 public interface QuestionService {
 
-    Set<Question> getQuestions(String bankId);
+    Set<Question> getQuestions(Long bankId);
     
     Set<Question> getQuestionInBanks(String... bankId);
 
