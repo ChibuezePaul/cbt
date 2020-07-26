@@ -15,7 +15,7 @@ public interface BankService {
 
     Bank updateBank(UpdateBankCmd cmd);
 
-    Set<Bank> getMultipleBanks(List<UpdateBankCmd> cmd);
+    Set<Bank> getMultipleBanks(UpdateBankCmd... cmd);
 
     void deleteBank(long id);
 

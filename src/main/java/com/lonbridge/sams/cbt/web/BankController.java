@@ -34,10 +34,10 @@ public class BankController {
     }*/
     
     @GetMapping("/banks")
-    public ResponseEntity<Set<?>> getMultipleBanks(@RequestBody UpdateBankCmd... cmd) {
+    public ResponseEntity<List<?>> getMultipleBanks(@RequestBody UpdateBankCmd... cmd) {
   //  public ResponseEntity<Set<?>> getMultipleBanks(@RequestBody Long... bankId) {
-        Set<Bank> banks = bankService.getMultipleBanks(Arrays.asList ( cmd ));
-        return ResponseEntity.ok(banks);
+        Set<Bank> banks = bankService.getMultipleBanks(cmd);
+        return ResponseEntity.ok(Arrays.asList(banks));
     }
 
     @GetMapping

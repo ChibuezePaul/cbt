@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -37,13 +38,22 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Set<Bank> getMultipleBanks (List<UpdateBankCmd> cmd ) {
-        log.info("Retrieving multiple banks from {}", Arrays.toString ( cmd.toArray() ) );
+    public Set<Bank> getMultipleBanks (UpdateBankCmd... cmd ) {
+        log.info("Retrieving multiple banks from {}", Arrays.toString ( cmd ) );
 
-        cmd.stream().map(c -> c.getId())
-                .collect ( Collectors.toList () );
+        List<UpdateBankCmd> updateBankCmdList = Arrays.asList(cmd);
+        /*cmd.stream().filter(c -> c.getId() != 0)
+                .map()
+                .collect ( Collectors.toList () );*/
 
-        return bankRepository.findByIdIn();
+        List<Long> longIdList = new ArrayList<>();
+
+        for (UpdateBankCmd ucbcmd :
+                cmd) {
+            longIdList.add(ucbcmd.getId());
+        }
+
+        return bankRepository.findByIdIn(longIdList);
       //  return bankRepository.findByBankIdIn ( bankId );
     }
 
