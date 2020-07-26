@@ -10,6 +10,8 @@ import java.util.List;
 public class NewQuestionCmd {
  //   private String bankId;
     private String description;
+    private String tag;
+    private String category;
     private List<Option> options = new ArrayList<>();
     private Bank bank;
 

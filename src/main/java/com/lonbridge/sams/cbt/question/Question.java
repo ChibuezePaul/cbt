@@ -18,6 +18,10 @@ public class Question {
 
     private String description;
 
+    private String tag;
+
+    private String category;
+
     @ElementCollection
     private Set<Option> options;
 

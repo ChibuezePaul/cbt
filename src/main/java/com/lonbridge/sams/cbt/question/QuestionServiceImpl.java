@@ -64,6 +64,19 @@ public class QuestionServiceImpl implements QuestionService {
     public Question updateQuestion(UpdateQuestionCmd cmd) {
         Question question = questionRepository.findById(cmd.getId()).orElseThrow(QuestionNotFoundException::new);
         question.setDescription (cmd.getDescription());
+
+        if(cmd.getTag() != null && !cmd.getTag().equalsIgnoreCase("")){
+            question.setTag (cmd.getTag());
+        }
+        if(cmd.getCategory() != null && !cmd.getCategory().equalsIgnoreCase("")){
+            question.setCategory (cmd.getCategory());
+        }
+     //   Bank bank = bankRepository.findById(question.getBank().getId()).orElseThrow(BankNotFoundException::new);
+      //  Bank bank = question.getBank();
+      //  bank.setId(cmd.getId());
+
+      //  question.setBank(bank);
+
         question.setOptions(cmd.getOptions());
         return questionRepository.save(question);
     }
