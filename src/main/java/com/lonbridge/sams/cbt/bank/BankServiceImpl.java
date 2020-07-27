@@ -61,6 +61,7 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public void deleteBank(long id) {
-        bankRepository.deleteById(id);
+        Bank bank = bankRepository.findById(id).orElseThrow( BankNotFoundException::new);
+        bankRepository.delete(bank);
     }
 }

@@ -45,7 +45,8 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestion(long id) {
         log.info("Deleting {}", id);
-        questionRepository.deleteById(id);
+        Question question = questionRepository.findById(id).orElseThrow(QuestionNotFoundException::new);;
+        questionRepository.delete(question);
     }
 
     @Override
@@ -53,6 +54,8 @@ public class QuestionServiceImpl implements QuestionService {
         log.info("Saving {}",cmd);
         Question question = new Question();
         question.setDescription (cmd.getDescription());
+        question.setTag (cmd.getTag());
+        question.setCategory (cmd.getCategory());
         Set< Option > options = new HashSet<> ( cmd.getOptions () );
         Bank bank = bankRepository.findById(cmd.getBank().getId()).orElseThrow(BankNotFoundException::new);
         question.setOptions(options);

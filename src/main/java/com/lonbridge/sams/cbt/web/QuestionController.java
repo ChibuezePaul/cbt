@@ -44,6 +44,7 @@ public class QuestionController {
     @DeleteMapping
     public ResponseEntity<?> deleteQuestion(Long questionId) {
         questionService.deleteQuestion(questionId);
+       // return ResponseEntity.ok(questionId);
         return ResponseEntity.ok().build();
     }
 
