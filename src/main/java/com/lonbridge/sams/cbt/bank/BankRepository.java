@@ -9,6 +9,8 @@ import java.util.Set;
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Long> {
 
-    Set<Bank> findByIdIn(List<Long> bankId);
+    Set<Bank> findByIdIn(List<String> bankId);
+
+    Bank findById(String id);
 
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 @Data
 public class UpdateBankCmd {
 
-    private long id;
+    private String id;
     private String description;
 
 }

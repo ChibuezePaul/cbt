@@ -1,6 +1,5 @@
 package com.lonbridge.sams.cbt.bank;
 
-import com.lonbridge.sams.cbt.question.Question;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Set;
 
 public interface BankService {
 
-    Bank getBank(Long id);
+    Bank getBank(String id);
 
     Bank addBank(NewBankCmd cmd);
 
@@ -17,7 +16,7 @@ public interface BankService {
 
     Set<Bank> getMultipleBanks(UpdateBankCmd... cmd);
 
-    void deleteBank(long id);
+    void deleteBank(String id);
 
 /*    Question addQuestion(NewQuestionCmd cmd);
 

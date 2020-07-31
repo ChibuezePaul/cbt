@@ -4,14 +4,16 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Data
 @Entity
 public class Bank {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id = UUID.randomUUID().toString();
+  //  @GeneratedValue(strategy = GenerationType.AUTO)
+   // private String id;
 
     private String description;
 

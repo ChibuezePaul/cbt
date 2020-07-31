@@ -5,8 +5,6 @@ import com.lonbridge.sams.cbt.bank.BankService;
 import com.lonbridge.sams.cbt.bank.NewBankCmd;
 import com.lonbridge.sams.cbt.bank.UpdateBankCmd;
 import com.lonbridge.sams.cbt.question.NewQuestionCmd;
-import com.lonbridge.sams.cbt.question.Question;
-import com.lonbridge.sams.cbt.question.QuestionService;
 import com.lonbridge.sams.cbt.question.UpdateQuestionCmd;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +39,13 @@ public class BankController {
     }
 
     @GetMapping
-    public ResponseEntity<Bank> getBank(Long id) {
+    public ResponseEntity<Bank> getBank(String id) {
         Bank bank = bankService.getBank(id);
         return ResponseEntity.ok(bank);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteBank(Long id) {
+    public ResponseEntity<?> deleteBank(String id) {
         bankService.deleteBank(id);
         return ResponseEntity.ok().build();
     }
