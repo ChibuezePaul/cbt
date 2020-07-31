@@ -26,8 +26,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Set<Question> getQuestions(Long bankId) {
-        log.info("Retrieving questions from {}", bankId);
+    public Set<Question> getQuestions(String bankId) {
+        log.info("Retrieving questions from- {}", bankId);
         return questionRepository.findByBankId(bankId);
     }
     

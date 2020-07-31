@@ -1,6 +1,7 @@
 package com.lonbridge.sams.cbt.bank;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,10 +11,22 @@ import java.util.UUID;
 @Entity
 public class Bank {
 
-    @Id
+   /* @Id
     private String id = UUID.randomUUID().toString();
   //  @GeneratedValue(strategy = GenerationType.AUTO)
-   // private String id;
+   // private String id;*/
+
+
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+  //  @Column(columnDefinition = "BINARY(255)")
+    // @Column(columnDefinition = "CHAR(32)")
+    private String id;
+
+
+
 
     private String description;
 

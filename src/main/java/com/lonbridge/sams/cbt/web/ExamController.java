@@ -22,7 +22,7 @@ public class ExamController {
 	public ExamController ( ExamService examService ) {this.examService = examService;}
 	
 	@GetMapping ("/all")
-	public ResponseEntity< Set<ExamQuestion> > getExamQuestions(Long bankId) {
+	public ResponseEntity< Set<ExamQuestion> > getExamQuestions(String bankId) {
 		Set<ExamQuestion> questions = examService.getQuestions(bankId);
 		return ResponseEntity.ok(questions);
 	}

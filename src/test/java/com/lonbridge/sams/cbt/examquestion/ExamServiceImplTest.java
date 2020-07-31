@@ -64,7 +64,7 @@ class ExamServiceImplTest {
 	void getQuestions () {
 		//Arrange
 		Set<Question> questions = getNewQuestions();
-		Long bankId = 1L;
+		String bankId = "4028abb373a6cb450173a6cbf08d999";
 		
 		//Act
 		when ( questionService.getQuestions ( bankId ) ).thenReturn ( questions );
