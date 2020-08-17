@@ -17,6 +17,8 @@ public interface BankService {
     Set<Bank> getMultipleBanks(UpdateBankCmd... cmd);
 
     void deleteBank(String id);
+	
+	List< Bank> getAllBank ();
 
 /*    Question addQuestion(NewQuestionCmd cmd);
 

@@ -37,6 +37,12 @@ public class BankController {
         Set<Bank> banks = bankService.getMultipleBanks(cmd);
         return ResponseEntity.ok(Arrays.asList(banks));
     }
+    
+    @GetMapping("/all")
+    public ResponseEntity<List<Bank>> getMultipleBanks() {
+        List<Bank> banks = bankService.getAllBank ();
+        return ResponseEntity.ok(banks);
+    }
 
     @GetMapping
     public ResponseEntity<Bank> getBank(String id) {

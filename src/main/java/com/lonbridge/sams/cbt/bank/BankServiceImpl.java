@@ -63,4 +63,9 @@ public class BankServiceImpl implements BankService {
         Bank bank = bankRepository.findById(id)/*.orElseThrow( BankNotFoundException::new)*/;
         bankRepository.delete(bank);
     }
+    
+    @Override
+    public List< Bank > getAllBank () {
+        return bankRepository.findAll ();
+    }
 }
