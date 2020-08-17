@@ -39,7 +39,7 @@ public class BankController {
     }
     
     @GetMapping("/all")
-    public ResponseEntity<List<Bank>> getMultipleBanks() {
+    public ResponseEntity<List<Bank>> getAllBanks() {
         List<Bank> banks = bankService.getAllBank ();
         return ResponseEntity.ok(banks);
     }
