@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface BankRepository extends JpaRepository<Bank, Long> {
+public interface BankRepository extends JpaRepository<Bank, String> {
 
     Set<Bank> findByIdIn(List<String> bankId);
-
-    Bank findById(String id);
-
 }

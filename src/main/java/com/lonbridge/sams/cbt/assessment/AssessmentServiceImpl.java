@@ -38,7 +38,7 @@ public class AssessmentServiceImpl implements AssessmentService {
         long answerPoint = 0;
 
         for ( Option option : question.getOptions () ) {
-            if ( option.getAnswer ().trim ().equals ( answer.trim () ) ) {
+            if ( option.getAnswer ().equalsIgnoreCase ( answer ) ) {
                 isAnswerCorrect = option.getCorrect ();
                 answerPoint = option.getPoint ();
             }

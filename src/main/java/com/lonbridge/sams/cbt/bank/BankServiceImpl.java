@@ -26,7 +26,7 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public Bank getBank(String id) {
-        return bankRepository.findById(id)/*.orElseThrow( BankNotFoundException::new)*/;
+        return bankRepository.findById(id).orElseThrow( BankNotFoundException::new);
     }
 
     @Override
@@ -53,14 +53,14 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public Bank updateBank(UpdateBankCmd cmd) {
-        Bank bank = bankRepository.findById(cmd.getId())/*.orElseThrow( BankNotFoundException::new)*/;
+        Bank bank = bankRepository.findById(cmd.getId()).orElseThrow( BankNotFoundException::new);
         bank.setDescription(cmd.getDescription());
         return bankRepository.save(bank);
     }
 
     @Override
     public void deleteBank(String id) {
-        Bank bank = bankRepository.findById(id)/*.orElseThrow( BankNotFoundException::new)*/;
+        Bank bank = bankRepository.findById(id).orElseThrow( BankNotFoundException::new);
         bankRepository.delete(bank);
     }
     

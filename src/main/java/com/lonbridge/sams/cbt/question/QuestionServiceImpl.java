@@ -57,9 +57,9 @@ public class QuestionServiceImpl implements QuestionService {
         question.setTag (cmd.getTag());
         question.setCategory (cmd.getCategory());
         Set< Option > options = new HashSet<> ( cmd.getOptions () );
-        Bank bank = bankRepository.findById(cmd.getBank().getId())/*.orElseThrow(BankNotFoundException::new)*/;
+        Bank bank = bankRepository.findById(cmd.getBank().getId()).orElseThrow(BankNotFoundException::new);
         question.setOptions(options);
-        question.setBank(cmd.getBank());
+        question.setBank(bank);
         return questionRepository.save(question);
     }
 
