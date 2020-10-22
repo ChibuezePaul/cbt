@@ -30,12 +30,17 @@ public class ExamServiceImpl implements ExamService {
 		ExamQuestion examQuestion = new ExamQuestion ();
 		examQuestion.setDescription ( question.getDescription () );
 		Set< ExamAnswerCmd > answers = new HashSet<> ();
+		final int[] isCorrectCount = {0};
 		question.getOptions ().forEach ( option -> {
 			ExamAnswerCmd answerCmd = new ExamAnswerCmd ();
 			answerCmd.setQuestionId ( question.getId () );
 			answerCmd.setAnswer ( option.getAnswer () );
 			answers.add ( answerCmd );
+			if(option.getCorrect ()){
+				isCorrectCount[0]++;
+			}
 		} );
+		examQuestion.setIsMultipleEntry(isCorrectCount[0]>1);
 		examQuestion.setAnswers ( answers );
 		return examQuestion;
 	}
@@ -62,7 +67,7 @@ public class ExamServiceImpl implements ExamService {
 	}
 	
 	@Override
-	public void submitAnswer ( ExamAnswerCmd cmd ) {
+	public boolean submitAnswer ( ExamAnswerCmd cmd ) {
 		Question question = questionService.getQuestion ( cmd.getQuestionId () );
 		Boolean correct = false;
 		for( Option o : question.getOptions ()) {
@@ -72,6 +77,7 @@ public class ExamServiceImpl implements ExamService {
 			}
 		}
 		log.info ( "Answer gotten is correct {}", correct );
+		return correct;
 	}
 	
 	@Override

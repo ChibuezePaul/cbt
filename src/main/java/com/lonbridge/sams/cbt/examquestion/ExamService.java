@@ -13,7 +13,7 @@ public interface ExamService {
     ExamQuestion getQuestion(long id);
 
 
-    void submitAnswer(ExamAnswerCmd cmd);
+    boolean submitAnswer(ExamAnswerCmd cmd);
     
     Set< ExamQuestion> convertQuestionsToExamQuestions ( Set< Question > questions );
 }

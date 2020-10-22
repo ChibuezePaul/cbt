@@ -41,8 +41,8 @@ public class ExamController {
 	
 	@PostMapping
 	public ResponseEntity submitAnswer(ExamAnswerCmd answerCmd){
-		examService.submitAnswer ( answerCmd );
-		return ResponseEntity.ok ().build ();
+		boolean isAnswer = examService.submitAnswer ( answerCmd );
+		return ResponseEntity.ok (isAnswer ? "Correct" : "Wrong");
 	}
 	
 	@PutMapping ("/convert")
