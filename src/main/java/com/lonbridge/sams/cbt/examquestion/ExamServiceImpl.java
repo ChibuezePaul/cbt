@@ -30,17 +30,13 @@ public class ExamServiceImpl implements ExamService {
 		ExamQuestion examQuestion = new ExamQuestion ();
 		examQuestion.setDescription ( question.getDescription () );
 		Set< ExamAnswerCmd > answers = new HashSet<> ();
-		final int[] isCorrectCount = {0};
 		question.getOptions ().forEach ( option -> {
 			ExamAnswerCmd answerCmd = new ExamAnswerCmd ();
 			answerCmd.setQuestionId ( question.getId () );
 			answerCmd.setAnswer ( option.getAnswer () );
 			answers.add ( answerCmd );
-			if(option.getCorrect ()){
-				isCorrectCount[0]++;
-			}
 		} );
-		examQuestion.setIsMultipleEntry(isCorrectCount[0]>1);
+		examQuestion.setIsMultipleEntry(question.isMultipleEntry ());
 		examQuestion.setAnswers ( answers );
 		return examQuestion;
 	}
