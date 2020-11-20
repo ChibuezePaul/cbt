@@ -4,11 +4,11 @@ import com.lonbridge.sams.cbt.examquestion.ExamAnswerCmd;
 import com.lonbridge.sams.cbt.question.Option;
 import com.lonbridge.sams.cbt.question.Question;
 import com.lonbridge.sams.cbt.question.QuestionService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AssessmentServiceImpl implements AssessmentService {
@@ -42,9 +42,11 @@ public class AssessmentServiceImpl implements AssessmentService {
         long answerPoint = 0;
         if(answer != null) {
             if ( question.isMultipleEntry () ) {
-                String[] answers = answer.toLowerCase ().split ( "," );
+				List< String > answers = Stream.of ( answer.split ( "," ) )
+					  .map ( String :: trim )
+					  .collect ( Collectors.toList () );
                 for ( Option option : question.getOptions () ) {
-                    if ( Arrays.asList ( answers ).contains ( option.getAnswer ().toLowerCase () ) ) {
+                    if ( answers.contains ( option.getAnswer ().toLowerCase () ) ) {
                         isAnswerCorrect = option.getCorrect ();
                         answerPoint += option.getPoint ();
                     }
