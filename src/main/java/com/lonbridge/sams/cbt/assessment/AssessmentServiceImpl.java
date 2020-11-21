@@ -42,7 +42,7 @@ public class AssessmentServiceImpl implements AssessmentService {
         long answerPoint = 0;
         if(answer != null) {
             if ( question.isMultipleEntry () ) {
-				List< String > answers = Stream.of ( answer.split ( "," ) )
+				List< String > answers = Stream.of ( answer.toLowerCase().split ( "," ) )
 					  .map ( String :: trim )
 					  .collect ( Collectors.toList () );
                 for ( Option option : question.getOptions () ) {
