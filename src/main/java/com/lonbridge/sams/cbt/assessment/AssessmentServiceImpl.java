@@ -30,9 +30,7 @@ public class AssessmentServiceImpl implements AssessmentService {
             Question question = questionService.getQuestion (questionId);
             Assessment assessment = assessAnswer ( question , answer );
             assessments.add ( assessment );
-            for ( Option option : question.getOptions () ) {
-                totalPoint[ 0 ] += option.getPoint ();
-            }
+			totalPoint[ 0 ] += assessment.getQuestionPoint ();
         } );
         return new AssessmentSummary (assessments, totalPoint[0]);
     }
